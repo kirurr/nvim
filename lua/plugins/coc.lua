@@ -2,6 +2,10 @@ return {
 	"neoclide/coc.nvim",
 	branch = "release",
 	init = function()
+		vim.cmd [[
+			let g:coc_global_extensions = ['coc-tailwindcss', 'coc-prettier', 'coc-html-css-support', 'coc-html', 'coc-git', 'coc-explorer', 'coc-eslint', 'coc-emmet', 'coc-cssmodules', 'coc-tsserver', 'coc-pyright', 'coc-lua', 'coc-json', 'coc-css']
+		]]
+
 		vim.opt.backup = false
 		vim.opt.writebackup = false
 
