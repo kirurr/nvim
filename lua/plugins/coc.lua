@@ -3,7 +3,7 @@ return {
 	branch = "release",
 	init = function()
 		vim.cmd [[
-			let g:coc_global_extensions = ['coc-tailwindcss', 'coc-prettier', 'coc-html-css-support', 'coc-html', 'coc-git', 'coc-explorer', 'coc-eslint', 'coc-emmet', 'coc-cssmodules', 'coc-tsserver', 'coc-pyright', 'coc-lua', 'coc-json', 'coc-css']
+			let g:coc_global_extensions = ['coc-eslint','coc-tailwindcss', 'coc-prettier', 'coc-html-css-support', 'coc-html', 'coc-git', 'coc-explorer']
 		]]
 
 		vim.opt.backup = false
