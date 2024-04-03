@@ -3,8 +3,10 @@ return {
 	branch = "release",
 	init = function()
 		vim.cmd [[
-			let g:coc_global_extensions = ['coc-eslint','coc-tailwindcss', 'coc-prettier', 'coc-html-css-support', 'coc-html', 'coc-git', 'coc-explorer']
+			let g:coc_global_extensions = ['coc-eslint','@yaegassy/coc-tailwindcss3', 'coc-prettier', 'coc-html-css-support', 'coc-html', 'coc-git', 'coc-explorer']
+			let g:coc_filetype_map = {'pug': 'jade'}
 		]]
+
 
 		vim.opt.backup = false
 		vim.opt.writebackup = false

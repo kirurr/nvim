@@ -39,6 +39,11 @@ return {
 				use_libuv_file_watcher = true,
 				follow_current_file = {
 					enabled = true
+				},
+				filesystem = {
+					filtered_items = {
+						hide_gitignored = true,
+					}
 				}
 			})
 		end,
@@ -72,11 +77,15 @@ return {
 			}
 		end
 	},
-
+	"nvim-telescope/telescope-fzy-native.nvim",
 	{
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.5',
 		dependencies = { 'nvim-lua/plenary.nvim' },
+		config = function ()
+			require('telescope').setup()
+			require('telescope').load_extension('fzy_native')
+		end,
 		keys = {
 			{ "<F2>", '<cmd>Telescope find_files<cr>', desc = 'Open telescope file finder' }
 		}
