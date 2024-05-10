@@ -7,12 +7,14 @@ o.relativenumber = true
 o.wrap = true
 o.cursorline = true
 o.smartindent = true
-o.tabstop = 2
+o.tabstop = 4
 o.smarttab = true
-o.shiftwidth = 2
-o.softtabstop = 2
+o.shiftwidth = 4
+o.softtabstop = 4
 o.swapfile = false
 o.encoding = "UTF-8"
+o.colorcolumn = "80"
+
 vim.o.termguicolors = true
 
 vim.g.loaded_netrw = 1

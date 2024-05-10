@@ -5,6 +5,11 @@
 	"prettier.singleQuote": true,
 	"prettier.jsxSingleQuote": true,
 	"prettier.trailingComma": "none",
+	"prettier.bracketSpacing": true,
+	"prettier.vueIndentScriptAndStyle": true,
+	"vue.autoInsert.bracketSpacing": true,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+	"html.format.wrapAttributes": "aligned-multiple",
 	"tailwindCSS.headwind.runOnSave": true,
 	"tailwindCSS.emmetCompletions": true,
 	"tailwindCSS.includeLanguages": {
@@ -13,6 +18,9 @@
 		"eruby": "html",
 		"html.twig": "html",
 		"pug": "html",
-		"jade": "html"
+		"jade": "html",
+		"vue": "html"
 	},
+	"volar.autoClosingTags": true,
+	"volar.autoCreateQuotes": true,
 }
