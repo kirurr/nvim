@@ -11,12 +11,14 @@ return {
 					python = { "isort", "black" },
 					-- Use a sub-list to run only the first available formatter
 					javascript = { { "prettierd", "prettier" } },
-					go = {"gofmt"},
-					vue = {"prettier"},
-					html = {"prettier"},
-					css = {"prettier"},
-					json = {"prettier"},
-
+					typescript = { { "prettierd", "prettier" } },
+					go = { "gofmt" },
+					vue = { { "prettierd", "prettier" } },
+					html = { { "prettierd", "prettier" } },
+					css = { { "prettierd", "prettier" } },
+					json = { { "prettierd", "prettier" } },
+					javascriptreact = { { "prettierd", "prettier" } },
+					typescriptreact = { { "prettierd", "prettier" } },
 				},
 			})
 

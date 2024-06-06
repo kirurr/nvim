@@ -45,21 +45,21 @@ require('mason-lspconfig').setup_handlers {
 		}
 	end,
 
-	["tsserver"] = function ()
-		local mason_registry = require('mason-registry')
-		local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path()
-		lspconfig.tsserver.setup {
-			on_attach = on_attach,
-			init_options = {
-				plugins = {
-					{
-						name = '@vue/typescript-plugin',
-						location = vue_language_server_path,
-						languages = { 'vue' },
-					},
-				},
-			},
-			filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-		}
-	end,
+	-- ["tsserver"] = function ()
+	-- 	local mason_registry = require('mason-registry')
+	-- 	local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path()
+	-- 	lspconfig.tsserver.setup {
+	-- 		on_attach = on_attach,
+	-- 		init_options = {
+	-- 			plugins = {
+	-- 				{
+	-- 					name = '@vue/typescript-plugin',
+	-- 					location = vue_language_server_path,
+	-- 					languages = { 'vue' },
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 		filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+	-- 	}
+	-- end,
 }
