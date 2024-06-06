@@ -8,12 +8,12 @@ o.wrap = true
 o.cursorline = true
 o.smartindent = true
 o.tabstop = 4
-o.smarttab = true
 o.shiftwidth = 4
 o.softtabstop = 4
 o.swapfile = false
 o.encoding = "UTF-8"
 o.colorcolumn = "80"
+o.autoindent = true
 
 vim.o.termguicolors = true
 

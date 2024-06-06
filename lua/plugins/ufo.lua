@@ -11,7 +11,7 @@ return {
 		vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 		vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
-		vim.api.nvim_set_hl(0, 'Folded', { fg = 'NONE', bg = 'NONE' })
+		vim.api.nvim_set_hl(0, 'Folded', { fg = "NONE", bg = "NONE" })
 		vim.api.nvim_set_hl(0, 'UfoFoldedEllipsis', { bg = "NONE" })
 	end,
 	dependencies = 'kevinhwang91/promise-async',
