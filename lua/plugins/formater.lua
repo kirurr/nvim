@@ -19,6 +19,7 @@ return {
 					json = { { "prettierd", "prettier" } },
 					javascriptreact = { { "prettierd", "prettier" } },
 					typescriptreact = { { "prettierd", "prettier" } },
+					cs = { { "csharpier" } }
 				},
 			})
 
