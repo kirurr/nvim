@@ -5,9 +5,12 @@ local opts = { noremap = true, silent = true }
 vim.diagnostic.config({ signs = false })
 
 -- стандартные горячие клавиши для работы с диагностикой
-map('n', '<leader>e', vim.diagnostic.open_float, { noremap = true, silent = true, desc = 'line diagnostic' })
-map('n', '[d', vim.diagnostic.goto_prev, opts)
-map('n', ']d', vim.diagnostic.goto_next, opts)
+map('n', '<leader>e', vim.diagnostic.open_float,
+	{ noremap = true, silent = true, desc = 'line diagnostic' })
+map('n', '[d', vim.diagnostic.goto_prev,
+	{ noremap = true, silent = true, desc = 'go to previous diagnostic' })
+map('n', ']d', vim.diagnostic.goto_next,
+	{ noremap = true, silent = true, desc = 'go to next diagnostic' })
 map('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
 local on_attach = function(client, bufnr)
@@ -28,7 +31,8 @@ local on_attach = function(client, bufnr)
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, bufopts)
 	map('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-	map('n', '<leader>r', vim.lsp.buf.rename, { noremap = true, silent = true, buffer = bufnr, desc = "rename" })
+	map('n', '<leader>r', vim.lsp.buf.rename,
+		{ noremap = true, silent = true, buffer = bufnr, desc = "rename" })
 	map('n', 'gr', vim.lsp.buf.references, bufopts)
 	map('n', '<leader>ca', vim.lsp.buf.code_action,
 		{ noremap = true, silent = true, buffer = bufnr, desc = "code action" })
@@ -45,21 +49,25 @@ require('mason-lspconfig').setup_handlers {
 		}
 	end,
 
-	-- ["tsserver"] = function ()
-	-- 	local mason_registry = require('mason-registry')
-	-- 	local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path()
-	-- 	lspconfig.tsserver.setup {
-	-- 		on_attach = on_attach,
-	-- 		init_options = {
-	-- 			plugins = {
-	-- 				{
-	-- 					name = '@vue/typescript-plugin',
-	-- 					location = vue_language_server_path,
-	-- 					languages = { 'vue' },
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 		filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-	-- 	}
-	-- end,
+	["lua_ls"] = function()
+		lspconfig.lua_ls.setup {
+			on_attach = on_attach,
+			settings = {
+				Lua = {
+					runtime = {
+						version = 'LuaJIT',
+					},
+					diagnostics = {
+						globals = { "vim" }
+					},
+					workspace = {
+						library = vim.api.nvim_get_runtime_file("", true),
+					},
+					telemetry = {
+						enable = false,
+					},
+				}
+			},
+		}
+	end,
 }
