@@ -1,25 +1,8 @@
 if vim.g.vscode then
-	require('settings')
-	print("vscode")
+    require('config.settings')
+    print("entering vscode")
 else
-	require('settings')
-
-	require('keymaps')
-
-	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-	if not vim.loop.fs_stat(lazypath) then
-		vim.fn.system({
-			"git",
-			"clone",
-			"--filter=blob:none",
-			"https://github.com/folke/lazy.nvim.git",
-			"--branch=stable", -- latest stable release
-			lazypath,
-		})
-	end
-	vim.opt.rtp:prepend(lazypath)
-
-	require("lazy").setup("plugins")
-
-	require("lsp")
+    require('config.settings')
+    require('config.lazy')
+    require('config.lsp')
 end

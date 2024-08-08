@@ -5,6 +5,7 @@ local opts = { noremap = true, silent = true }
 vim.diagnostic.config({ signs = false })
 
 -- стандартные горячие клавиши для работы с диагностикой
+
 map('n', '<leader>e', vim.diagnostic.open_float,
 	{ noremap = true, silent = true, desc = 'line diagnostic' })
 map('n', '[d', vim.diagnostic.goto_prev,
@@ -22,6 +23,7 @@ local on_attach = function(client, bufnr)
 	-- https://github.com/neovim/nvim-lspconfig
 	map('n', 'gD', vim.lsp.buf.declaration, bufopts)
 	map('n', 'gd', vim.lsp.buf.definition, bufopts)
+	map('n', 'K', vim.lsp.buf.hover, bufopts)
 	map('n', 'K', vim.lsp.buf.hover, bufopts)
 	map('n', 'gi', vim.lsp.buf.implementation, bufopts)
 	map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)

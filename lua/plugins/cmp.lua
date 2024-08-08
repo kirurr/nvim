@@ -8,25 +8,7 @@ return {
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			local handlers = require('nvim-autopairs.completion.handlers')
 
-			cmp.event:on(
-				"confirm_done",
-				cmp_autopairs.on_confirm_done({
-					filetypes = {
-						["*"] = {
-							["("] = {
-								kind = {
-									cmp.lsp.CompletionItemKind.Function,
-									cmp.lsp.CompletionItemKind.Method,
-								},
-								handler = handlers["*"],
-							},
-						},
-					},
-				})
-			)
 			cmp.setup({
 				snippet = {
 					expand = function(args)
@@ -50,7 +32,7 @@ return {
 						end
 					end),
 
-					["<Tab>"] = cmp.mapping(function(fallback)
+					["<C-j>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
 						elseif luasnip.locally_jumpable(1) then
@@ -60,7 +42,7 @@ return {
 						end
 					end, { "i", "s" }),
 
-					["<S-Tab>"] = cmp.mapping(function(fallback)
+					["<C-k>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
 						elseif luasnip.locally_jumpable(-1) then
@@ -74,7 +56,6 @@ return {
 					["<C-Space>"] = cmp.mapping.complete(),
 				}),
 				sources = cmp.config.sources({
-					{name = "supermaven"},
 					{ name = "nvim_lsp" },
 					{ name = "luasnip", options = { show_autosnippets = true } },
 				}, {
