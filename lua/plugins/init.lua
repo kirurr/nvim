@@ -1,13 +1,11 @@
 return {
 	{
 		"nvim-lualine/lualine.nvim",
-		config = function()
-			require("lualine").setup({
-				options = {
-					theme = "catppuccin"
-				}
-			})
-		end,
+		opts = {
+			options = {
+				theme = "catppuccin"
+			}
+		},
 		dependencies = { "nvim-tree/nvim-web-devicons" }
 	},
 
@@ -30,19 +28,19 @@ return {
 				end
 			end
 		end,
-		config = function()
-			require("neo-tree").setup({
-				use_libuv_file_watcher = true,
-				follow_current_file = {
-					enabled = true
-				},
-				filesystem = {
-					filtered_items = {
-						hide_gitignored = true
-					}
+		opts = {
+
+			use_libuv_file_watcher = true,
+			follow_current_file = {
+				enabled = true
+			},
+			filesystem = {
+				filtered_items = {
+					hide_gitignored = true
 				}
-			})
-		end,
+			}
+		},
+
 		keys = { {
 			"<F4>",
 			":Neotree toggle<cr>",
@@ -57,9 +55,7 @@ return {
 
 	{
 		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup()
-		end
+		config = true
 	},
 
 	{
@@ -126,17 +122,18 @@ return {
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("ibl").setup({
-				indent = {
-					char = "▏"
-				},
-				scope = {
-					show_start = false,
-					show_end = false
-				}
-			})
-		end
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {
+			indent = {
+				char = "▏"
+			},
+			scope = {
+				show_start = false,
+				show_end = false
+			}
+		}
 	},
 
 	"saadparwaiz1/cmp_luasnip", {
@@ -146,12 +143,13 @@ return {
 			paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" }
 		})
 	end
-	},
+},
 
 	{
 		"supermaven-inc/supermaven-nvim",
-		config = function()
-			require("supermaven-nvim").setup({})
-		end,
+		config = true,
+		opts = {
+			log_level = "off"
+		}
 	},
 }
