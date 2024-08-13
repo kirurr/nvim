@@ -1,7 +1,6 @@
 return {
 	{
 		"stevearc/conform.nvim",
-		opts = {},
 		config = function()
 			local conform = require("conform")
 			conform.setup({
@@ -19,7 +18,7 @@ return {
 					json = { "prettierd", "prettier", stop_after_first = true },
 					javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 					typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-					cs = { "csharpier" }
+					cs = { "csharpier" },
 				},
 			})
 

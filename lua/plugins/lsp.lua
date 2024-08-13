@@ -3,10 +3,10 @@ return {
 	'neovim/nvim-lspconfig',
 	{
 		"williamboman/mason.nvim",
-		config = true
+		opts = {}
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		config = true
+		opts = {}
 	}
 }

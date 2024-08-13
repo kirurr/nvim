@@ -3,18 +3,35 @@ return {
 		"nvim-lualine/lualine.nvim",
 		opts = {
 			options = {
-				theme = "catppuccin"
-			}
+				theme = "catppuccin",
+			},
+			sections = {
+				lualine_c = {
+					{
+						"buffers",
+						filetype_names = {
+							Neotree = " "
+						},
+						symbols = {
+							modified = " ●",
+							alternate_file = "",
+							directory = "",
+						},
+					},
+				},
+			},
 		},
-		dependencies = { "nvim-tree/nvim-web-devicons" }
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
-		dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
-			"3rd/image.nvim"
+			"3rd/image.nvim",
 		},
 		init = function()
 			if vim.fn.argc(-1) == 1 then
@@ -22,8 +39,8 @@ return {
 				if stat and stat.type == "directory" then
 					require("neo-tree").setup({
 						filesystem = {
-							hijack_netrw_behavior = "open_current"
-						}
+							hijack_netrw_behavior = "open_current",
+						},
 					})
 				end
 			end
@@ -32,37 +49,40 @@ return {
 
 			use_libuv_file_watcher = true,
 			follow_current_file = {
-				enabled = true
+				enabled = true,
 			},
 			filesystem = {
 				filtered_items = {
-					hide_gitignored = true
-				}
-			}
+					hide_gitignored = true,
+				},
+			},
 		},
 
 		keys = { {
 			"<F4>",
 			":Neotree toggle<cr>",
 			desc = "Toggle file tree",
-			silent = true
-		} }
+			silent = true,
+		} },
 	},
 
-	"tpope/vim-commentary",
+	{
+		"tpope/vim-commentary",
+		cmd = "Commentary",
+	},
 
 	"ap/vim-css-color",
 
 	{
 		"lewis6991/gitsigns.nvim",
-		config = true
+		opts = {},
 	},
 
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = function()
 			require("nvim-treesitter.install").update({
-				with_sync = true
+				with_sync = true,
 			})()
 		end,
 		config = function()
@@ -70,14 +90,16 @@ return {
 				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
 				sync_install = false,
 				highlight = {
-					enable = true
+					enable = true,
 				},
 				modules = {},
 				auto_install = false,
 				ignore_install = {},
 			})
-		end
+		end,
 	},
+
+	"nvim-treesitter/nvim-treesitter-context",
 
 	"nvim-telescope/telescope-fzy-native.nvim",
 
@@ -89,15 +111,18 @@ return {
 			require("telescope").setup()
 			require("telescope").load_extension("fzy_native")
 		end,
-		keys = { {
-			"<F2>",
-			"<cmd>Telescope find_files<cr>",
-			desc = "Open telescope file finder"
-		}, {
-			"<F3>",
-			"<cmd>Telescope buffers<cr>",
-			desc = "Open telescope file finder"
-		} }
+		keys = {
+			{
+				"<F2>",
+				"<cmd>Telescope find_files<cr>",
+				desc = "Open telescope file finder",
+			},
+			{
+				"<F3>",
+				"<cmd>Telescope buffers<cr>",
+				desc = "Open telescope file finder",
+			},
+		},
 	},
 
 	"powerman/vim-plugin-ruscmd",
@@ -105,9 +130,13 @@ return {
 	{
 		"christoomey/vim-tmux-navigator",
 		cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight", "TmuxNavigatePrevious" },
-		keys = { { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" }, { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" }, { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" } }
+		keys = {
+			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+		},
 	},
 
 	{
@@ -117,7 +146,7 @@ return {
 			vim.o.timeout = true
 			vim.o.timeoutlen = 600
 		end,
-		opts = {}
+		opts = {},
 	},
 
 	{
@@ -127,29 +156,29 @@ return {
 		---@type ibl.config
 		opts = {
 			indent = {
-				char = "▏"
+				char = "▏",
 			},
 			scope = {
 				show_start = false,
-				show_end = false
-			}
-		}
+				show_end = false,
+			},
+		},
 	},
 
-	"saadparwaiz1/cmp_luasnip", {
-	"L3MON4D3/LuaSnip",
-	config = function()
-		require("luasnip/loaders/from_vscode").load({
-			paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" }
-		})
-	end
-},
+	"saadparwaiz1/cmp_luasnip",
+	{
+		"L3MON4D3/LuaSnip",
+		config = function()
+			require("luasnip/loaders/from_vscode").load({
+				paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" },
+			})
+		end,
+	},
 
 	{
 		"supermaven-inc/supermaven-nvim",
-		config = true,
 		opts = {
-			log_level = "off"
-		}
+			log_level = "off",
+		},
 	},
 }

@@ -2,7 +2,7 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- удалить ошибки диагностики в левом столбце (SignColumn)
-vim.diagnostic.config({ signs = false })
+vim.diagnostic.config({ signs = false, severity_sort = true })
 
 -- стандартные горячие клавиши для работы с диагностикой
 
@@ -54,6 +54,7 @@ require('mason-lspconfig').setup_handlers {
 	["lua_ls"] = function()
 		lspconfig.lua_ls.setup {
 			on_attach = on_attach,
+			capabilities = capabilities,
 			settings = {
 				Lua = {
 					runtime = {
