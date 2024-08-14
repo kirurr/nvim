@@ -10,7 +10,7 @@ return {
 					{
 						"buffers",
 						filetype_names = {
-							Neotree = " "
+							Neotree = " ",
 						},
 						symbols = {
 							modified = " ●",
@@ -26,7 +26,7 @@ return {
 
 	{
 		"windwp/nvim-ts-autotag",
-		opts = {}
+		opts = {},
 	},
 
 	{
@@ -92,13 +92,27 @@ return {
 		end,
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+				ensure_installed = {
+					"c",
+					"lua",
+					"vim",
+					"vimdoc",
+					"query",
+					"markdown",
+					"markdown_inline",
+					"json",
+					"html",
+					"css",
+					"tsx",
+					"javascript",
+					"typescript",
+				},
 				sync_install = false,
 				highlight = {
 					enable = true,
 				},
 				modules = {},
-				auto_install = false,
+				auto_install = true,
 				ignore_install = {},
 			})
 		end,
