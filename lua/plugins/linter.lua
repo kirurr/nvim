@@ -10,9 +10,9 @@ return {
 			lint.linters_by_ft = {
 				javascript = { "eslint" },
 				typescript = { "eslint" },
-				javascriptreact = { "eslint_d" },
-				typescriptreact = { "eslint_d" },
-				vue = { "eslint_d" },
+				javascriptreact = { "eslint" },
+				typescriptreact = { "eslint" },
+				vue = { "eslint" },
 				go = { "golangcilint" },
 			}
 

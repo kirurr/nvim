@@ -23,6 +23,7 @@ return {
 				"prettier",
 				"prettierd",
 				"stylua",
+				"eslint-lsp"
 			},
 			integrations = {
 				["mason-lspconfig"] = true,
