@@ -1,10 +1,24 @@
 return {
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-cmdline",
+	{
+		"L3MON4D3/LuaSnip",
+		lazy = true,
+		config = function()
+			require("luasnip/loaders/from_vscode").load({
+				paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" },
+			})
+		end,
+	},
 	{
 		"hrsh7th/nvim-cmp",
+		event = { "BufRead", "BufNewFile", "BufEnter" },
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"saadparwaiz1/cmp_luasnip",
+			"L3MON4D3/LuaSnip",
+		},
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
@@ -17,6 +31,12 @@ return {
 				},
 				performance = {
 					max_view_entries = 7,
+				},
+				sources = {
+					{ name = "nvim_lsp" },
+					{ name = "luasnip", options = { show_autosnippets = true } },
+					{ name = "path" },
+					{ name = "buffer" },
 				},
 				mapping = cmp.mapping.preset.insert({
 
@@ -57,19 +77,11 @@ return {
 					["<C-u>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "luasnip", options = { show_autosnippets = true } },
-				}, {
-					{ name = "buffer" },
-					{ name = "path" },
-				}),
 			})
-
 			local preferred_sources = {
-					{ name = "nvim_lsp" },
-					{ name = "luasnip", options = { show_autosnippets = true } },
-					{ name = "path" },
+				{ name = "nvim_lsp" },
+				{ name = "luasnip", options = { show_autosnippets = true } },
+				{ name = "path" },
 			}
 
 			local function tooBig(bufnr)
@@ -82,6 +94,7 @@ return {
 					return false
 				end
 			end
+
 			vim.api.nvim_create_autocmd("BufRead", {
 				group = vim.api.nvim_create_augroup("CmpBufferDisableGrp", { clear = true }),
 				callback = function(ev)

@@ -1,6 +1,20 @@
 return {
 	{
 		"stevearc/conform.nvim",
+		keys = {
+			{
+				"<leader>f",
+				function()
+					require("conform").format({
+						lsp_fallback = true,
+						async = false,
+					})
+				end,
+				desc = "format",
+			},
+			{ "<leader>F", "<cmd>:Format<cr>", desc = "format async", silent = true },
+		},
+
 		config = function()
 			local conform = require("conform")
 			conform.setup({
@@ -17,14 +31,14 @@ return {
 				},
 			})
 
-			vim.keymap.set("", "<leader>f", function()
-				conform.format({
-					lsp_fallback = true,
-					async = false,
-				})
-			end, { desc = "format" })
+			-- vim.keymap.set("", "<leader>f", function()
+			-- 	conform.format({
+			-- 		lsp_fallback = true,
+			-- 		async = false,
+			-- 	})
+			-- end, { desc = "format" })
 
-			vim.keymap.set("n", "<leader>F", "<cmd>:Format<cr>", { desc = "format async", silent = true })
+			-- vim.keymap.set("n", "<leader>F", "<cmd>:Format<cr>", { desc = "format async", silent = true })
 
 			vim.api.nvim_create_user_command("Format", function(args)
 				local range = nil

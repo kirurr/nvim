@@ -188,21 +188,12 @@ return {
 		},
 	},
 
-	"saadparwaiz1/cmp_luasnip",
-	{
-		"L3MON4D3/LuaSnip",
-		config = function()
-			require("luasnip/loaders/from_vscode").load({
-				paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" },
-			})
-		end,
-	},
-
 	{
 		"supermaven-inc/supermaven-nvim",
 		opts = {
 			log_level = "off",
 		},
+		event = { "BufRead", "BufNewFile", "BufEnter" },
 	},
 
 	{ "brenoprata10/nvim-highlight-colors", opts = {} },
