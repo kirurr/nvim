@@ -12,12 +12,12 @@ vim.opt.swapfile = false
 vim.opt.encoding = "UTF-8"
 vim.opt.colorcolumn = "80"
 vim.opt.autoindent = true
+-- vim.opt.clipboard = "unnamedplus"
 
 vim.o.termguicolors = true
-
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

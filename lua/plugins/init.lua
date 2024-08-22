@@ -6,18 +6,20 @@ return {
 				theme = "catppuccin",
 			},
 			sections = {
-				lualine_c = {
+				lualine_a = {
 					{
 						"buffers",
-						filetype_names = {
-							Neotree = " ",
-						},
 						symbols = {
 							modified = " ●",
 							alternate_file = "",
 							directory = "",
 						},
+						use_mode_colors = true,
 					},
+				},
+				lualine_c = {},
+				lualine_z = {
+					"mode",
 				},
 			},
 		},
@@ -127,7 +129,9 @@ return {
 		tag = "0.1.5",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
-			require("telescope").setup()
+			require("telescope").setup({
+				defaults = { file_ignore_patterns = { ".git/", ".hg/", ".svn/", "node_modules" } },
+			})
 			require("telescope").load_extension("fzy_native")
 		end,
 		keys = {
@@ -146,17 +150,17 @@ return {
 
 	"powerman/vim-plugin-ruscmd",
 
-	{
-		"christoomey/vim-tmux-navigator",
-		cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight", "TmuxNavigatePrevious" },
-		keys = {
-			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-		},
-	},
+	-- {
+	-- 	"christoomey/vim-tmux-navigator",
+	-- 	cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight", "TmuxNavigatePrevious" },
+	-- 	keys = {
+	-- 		{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+	-- 		{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+	-- 		{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+	-- 		{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+	-- 		{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+	-- 	},
+	-- },
 
 	{
 		"folke/which-key.nvim",
@@ -200,4 +204,6 @@ return {
 			log_level = "off",
 		},
 	},
+
+	{ "brenoprata10/nvim-highlight-colors", opts = {} },
 }

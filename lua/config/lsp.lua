@@ -1,67 +1,78 @@
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
-
 -- удалить ошибки диагностики в левом столбце (SignColumn)
 vim.diagnostic.config({ signs = false, severity_sort = true })
 
--- стандартные горячие клавиши для работы с диагностикой
-
-map('n', '<leader>e', vim.diagnostic.open_float,
-	{ noremap = true, silent = true, desc = 'line diagnostic' })
-map('n', '[d', vim.diagnostic.goto_prev,
-	{ noremap = true, silent = true, desc = 'go to previous diagnostic' })
-map('n', ']d', vim.diagnostic.goto_next,
-	{ noremap = true, silent = true, desc = 'go to next diagnostic' })
-map('n', '<leader>q', vim.diagnostic.setloclist, opts)
-
-local on_attach = function(client, bufnr)
-	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-	-- стандартные горячие клавиши для LSP, больше в документации
-	-- https://github.com/neovim/nvim-lspconfig
-	map('n', 'gD', vim.lsp.buf.declaration, bufopts)
-	map('n', 'gd', vim.lsp.buf.definition, bufopts)
-	map('n', 'K', vim.lsp.buf.hover, bufopts)
-	map('n', 'K', vim.lsp.buf.hover, bufopts)
-	map('n', 'gi', vim.lsp.buf.implementation, bufopts)
-	map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-	map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-	map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-	map('n', '<leader>wl', function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, bufopts)
-	map('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-	map('n', '<leader>r', vim.lsp.buf.rename,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "rename" })
-	map('n', 'gr', vim.lsp.buf.references, bufopts)
-	map('n', '<leader>ca', vim.lsp.buf.code_action,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "code action" })
+local assignOpts = function(desc, bufnr)
+	local opts = {}
+	if not bufnr == nil then
+		opts.buffer = bufnr
+	end
+	opts.noremap = true
+	opts.silent = true
+	opts.desc = desc
+	return opts
 end
 
-local lspconfig = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+map("n", "<leader>e", vim.diagnostic.open_float, assignOpts("line diagnostic", nil))
 
-require('mason-lspconfig').setup_handlers {
+map("n", "[d", vim.diagnostic.goto_prev, assignOpts("go to previous diagnostic", nil))
+
+map("n", "]d", vim.diagnostic.goto_next, assignOpts("go to next diagnostic", nil))
+
+map("n", "<leader>q", vim.diagnostic.setloclist, assignOpts("set loclistset loclist", nil))
+
+local on_attach = function(client, bufnr)
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+	map("n", "gD", vim.lsp.buf.declaration, assignOpts("go to declaration", bufnr))
+
+	map("n", "gd", vim.lsp.buf.definition, assignOpts("go to definition", bufnr))
+
+	map("n", "K", vim.lsp.buf.hover, assignOpts("hover", bufnr))
+
+	map("n", "gi", vim.lsp.buf.implementation, assignOpts("goto implementationgoto implementation", bufnr))
+
+	map("n", "<C-k>", vim.lsp.buf.signature_help, assignOpts("signature helpsignature help", bufnr))
+
+	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, assignOpts("add workspace folder", bufnr))
+
+	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, assignOpts("remove workspace folder", bufnr))
+
+	map("n", "<leader>wl", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, assignOpts("list workspace folders", bufnr))
+
+	map("n", "<leader>D", vim.lsp.buf.type_definition, assignOpts("type definition", bufnr))
+
+	map("n", "<leader>r", vim.lsp.buf.rename, assignOpts("rename", bufnr))
+
+	map("n", "gr", vim.lsp.buf.references, assignOpts("go to references", bufnr))
+
+	map("n", "<leader>ca", vim.lsp.buf.code_action, assignOpts("code action", bufnr))
+end
+
+local lspconfig = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+require("mason-lspconfig").setup_handlers({
 	function(server_name)
-		lspconfig[server_name].setup {
+		lspconfig[server_name].setup({
 			on_attach = on_attach,
-			capabilities = capabilities
-		}
+			capabilities = capabilities,
+		})
 	end,
 
 	["lua_ls"] = function()
-		lspconfig.lua_ls.setup {
+		lspconfig.lua_ls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
 			settings = {
 				Lua = {
 					runtime = {
-						version = 'LuaJIT',
+						version = "LuaJIT",
 					},
 					diagnostics = {
-						globals = { "vim" }
+						globals = { "vim" },
 					},
 					workspace = {
 						library = vim.api.nvim_get_runtime_file("", true),
@@ -69,8 +80,8 @@ require('mason-lspconfig').setup_handlers {
 					telemetry = {
 						enable = false,
 					},
-				}
+				},
 			},
-		}
+		})
 	end,
-}
+})
