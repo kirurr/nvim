@@ -31,12 +31,7 @@ return {
 				},
 				performance = {
 					max_view_entries = 7,
-				},
-				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "luasnip", options = { show_autosnippets = true } },
-					{ name = "path" },
-					{ name = "buffer" },
+					debounce = 50,
 				},
 				mapping = cmp.mapping.preset.insert({
 

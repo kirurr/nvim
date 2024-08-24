@@ -62,6 +62,8 @@ require("mason-lspconfig").setup_handlers({
 		})
 	end,
 
+	["tsserver"] = function() end,
+
 	["lua_ls"] = function()
 		lspconfig.lua_ls.setup({
 			on_attach = on_attach,

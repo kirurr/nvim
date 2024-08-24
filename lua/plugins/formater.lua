@@ -9,6 +9,7 @@ return {
 						lsp_fallback = true,
 						async = false,
 					})
+					print("formatting")
 				end,
 				desc = "format",
 			},
@@ -28,17 +29,10 @@ return {
 					json = { "prettierd", "prettier", stop_after_first = true },
 					javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 					typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+					python = { "black" },
+					yaml = { "yamlfmt" },
 				},
 			})
-
-			-- vim.keymap.set("", "<leader>f", function()
-			-- 	conform.format({
-			-- 		lsp_fallback = true,
-			-- 		async = false,
-			-- 	})
-			-- end, { desc = "format" })
-
-			-- vim.keymap.set("n", "<leader>F", "<cmd>:Format<cr>", { desc = "format async", silent = true })
 
 			vim.api.nvim_create_user_command("Format", function(args)
 				local range = nil
@@ -50,6 +44,7 @@ return {
 					}
 				end
 				require("conform").format({ async = true, lsp_format = "fallback", range = range })
+				print("formatting async")
 			end, { range = true })
 		end,
 	},

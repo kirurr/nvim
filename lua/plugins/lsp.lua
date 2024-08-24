@@ -1,6 +1,6 @@
 return {
 	"onsails/lspkind-nvim",
-	"neovim/nvim-lspconfig",
+	{ "neovim/nvim-lspconfig", lazy = true },
 	{
 		"williamboman/mason.nvim",
 		opts = {},
@@ -29,5 +29,10 @@ return {
 			},
 		},
 		cmd = "MasonToolsInstall",
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 }

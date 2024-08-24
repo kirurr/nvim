@@ -5,6 +5,16 @@ return {
 			"BufReadPre",
 			"BufNewFile",
 		},
+		keys = {
+			{
+				"<leader>l",
+				function()
+					require("lint").try_lint()
+					print("linting")
+				end,
+				desc = "lint",
+			},
+		},
 		config = function()
 			local lint = require("lint")
 			lint.linters_by_ft = {
@@ -14,6 +24,8 @@ return {
 				typescriptreact = { "eslint" },
 				vue = { "eslint" },
 				go = { "golangcilint" },
+				python = { "pylint" },
+				yaml = { "yamllint" },
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -23,10 +35,6 @@ return {
 				callback = function()
 					lint.try_lint()
 				end,
-
-				vim.keymap.set("n", "<leader>l", function()
-					lint.try_lint()
-				end, { desc = "lint" }),
 			})
 		end,
 	},
