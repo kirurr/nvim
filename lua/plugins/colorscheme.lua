@@ -43,6 +43,7 @@ return {
 						background = true,
 					},
 				},
+				lsp_saga = true
 			},
 		},
 	},

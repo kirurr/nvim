@@ -33,6 +33,11 @@ return {
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
+		opts = {
+			on_attach = function(client, bufnr)
+				require("config.keybindings").on_attach_keybindings(bufnr)
+			end,
+			handlers = require("config.lsp-handlers").handlers,
+		},
 	},
 }

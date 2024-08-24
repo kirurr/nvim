@@ -123,17 +123,29 @@ return {
 
 	"nvim-treesitter/nvim-treesitter-context",
 
-	"nvim-telescope/telescope-fzy-native.nvim",
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
 
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.5",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-fzf-native.nvim",
+		},
 		config = function()
 			require("telescope").setup({
-				defaults = { file_ignore_patterns = { ".git/", ".hg/", ".svn/", "node_modules" } },
+				defaults = {
+					extensions = {
+						fzf = {
+							fuzzy = true,
+							override_generic_sorter = true,
+							override_file_sorter = true,
+							case_mode = "smart_case",
+						},
+					},
+				},
 			})
-			require("telescope").load_extension("fzy_native")
+			require("telescope").load_extension("fzf")
 		end,
 		keys = {
 			{
@@ -143,13 +155,13 @@ return {
 			},
 			{
 				"<F3>",
-				"<cmd>Telescope buffers<cr>",
-				desc = "Open telescope file finder",
+				"<cmd>Telescope live_grep<cr>",
+				desc = "Open telescope live grep",
 			},
 		},
 	},
 
-	"powerman/vim-plugin-ruscmd",
+	-- "powerman/vim-plugin-ruscmd",
 
 	-- {
 	-- 	"christoomey/vim-tmux-navigator",
@@ -192,6 +204,9 @@ return {
 	{
 		"supermaven-inc/supermaven-nvim",
 		opts = {
+			keymaps = {
+				accept_suggestion = "<C-CR>",
+			},
 			log_level = "off",
 		},
 		event = { "BufRead", "BufNewFile", "BufEnter" },
