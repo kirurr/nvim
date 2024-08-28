@@ -33,6 +33,7 @@ return {
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		event = { "BufRead", "BufNewFile", "BufEnter" },
 		opts = {
 			on_attach = function(client, bufnr)
 				require("config.keybindings").on_attach_keybindings(bufnr)

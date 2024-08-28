@@ -18,6 +18,7 @@ return {
 					},
 				},
 				lualine_c = {},
+				lualine_x = { "filetype" },
 				lualine_z = {
 					"mode",
 				},
@@ -25,6 +26,7 @@ return {
 		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
+	{ "echasnovski/mini.icons", version = false, opts = {} },
 
 	{
 		"windwp/nvim-ts-autotag",
@@ -206,6 +208,7 @@ return {
 		opts = {
 			keymaps = {
 				accept_suggestion = "<C-CR>",
+				accept_word = "<C-j>",
 			},
 			log_level = "off",
 		},
