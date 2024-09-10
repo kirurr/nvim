@@ -1,5 +1,5 @@
 vim.opt.smarttab = true
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = true
@@ -14,10 +14,12 @@ vim.opt.colorcolumn = "80"
 vim.opt.autoindent = true
 -- vim.opt.clipboard = "unnamedplus"
 
-vim.o.termguicolors = true
+vim.o.termguicolors = true;
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = "\\"
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
+-- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

@@ -8,5 +8,3 @@ else
     require('config.lazy')
     require('config.lsp')
 end
-
-

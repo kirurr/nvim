@@ -1,8 +1,21 @@
 return {
 	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+		init = function()
+			vim.cmd([[colorscheme tokyonight-night]])
+			if vim.g.colors_name == "tokyonight-night" then
+				vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#292e42" })
+				vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#16161e" })
+			end
+		end,
+	},
+	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		lazy = true,
+		enabled = false,
 		priority = 1000,
 		init = function()
 			vim.cmd.colorscheme("catppuccin-mocha")
@@ -43,7 +56,7 @@ return {
 						background = true,
 					},
 				},
-				lsp_saga = true
+				lsp_saga = true,
 			},
 		},
 	},

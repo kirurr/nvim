@@ -27,6 +27,26 @@ require("mason-lspconfig").setup_handlers({
 
 	["tsserver"] = function() end,
 
+	["cssls"] = function()
+		lspconfig.cssls.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			handlers = handlers,
+
+			settings = {
+				css = { validate = true, lint = {
+					unknownAtRules = "ignore",
+				} },
+				scss = { validate = true, lint = {
+					unknownAtRules = "ignore",
+				} },
+				less = { validate = true, lint = {
+					unknownAtRules = "ignore",
+				} },
+			},
+		})
+	end,
+
 	["lua_ls"] = function()
 		lspconfig.lua_ls.setup({
 			on_attach = on_attach,
