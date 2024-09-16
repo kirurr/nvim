@@ -33,6 +33,7 @@ return {
 					typescriptreact = { "prettier" },
 					python = { "black" },
 					yaml = { "yamlfmt" },
+					go = { "gofumpt" }
 				},
 			})
 

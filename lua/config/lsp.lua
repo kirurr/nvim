@@ -1,5 +1,5 @@
 vim.diagnostic.config({
-	signs = false,
+	-- signs = false,
 	severity_sort = true,
 	virtual_text = true,
 	float = {
@@ -25,7 +25,7 @@ require("mason-lspconfig").setup_handlers({
 		})
 	end,
 
-	["tsserver"] = function() end,
+	["ts_ls"] = function() end,
 
 	["cssls"] = function()
 		lspconfig.cssls.setup({

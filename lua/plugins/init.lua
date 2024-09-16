@@ -1,4 +1,10 @@
 return {
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
+
 	{ "echasnovski/mini.icons", version = false, opts = {} },
 
 	{
@@ -73,8 +79,5 @@ return {
 		event = { "BufRead", "BufNewFile", "BufEnter" },
 	},
 
-	{ "brenoprata10/nvim-highlight-colors",
-		opts = {},
-		event = { "BufRead", "BufEnter", "BufNewFile" }
-	},
+	{ "brenoprata10/nvim-highlight-colors", opts = {}, event = { "BufRead", "BufEnter", "BufNewFile" } },
 }
