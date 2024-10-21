@@ -14,7 +14,7 @@ return {
 
 	{
 		"stevearc/dressing.nvim",
-		opts = {},
+		opts = {}
 	},
 
 	{
@@ -29,7 +29,7 @@ return {
 
 	{
 		"christoomey/vim-tmux-navigator",
-		enabled = false,
+		enabled = true,
 		cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight", "TmuxNavigatePrevious" },
 		keys = {
 			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },

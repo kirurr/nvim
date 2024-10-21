@@ -12,7 +12,7 @@ vim.opt.swapfile = false
 vim.opt.encoding = "UTF-8"
 vim.opt.colorcolumn = "80"
 vim.opt.autoindent = true
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 
 vim.o.termguicolors = true;
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

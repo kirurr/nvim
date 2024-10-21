@@ -33,7 +33,8 @@ return {
 					typescriptreact = { "prettier" },
 					python = { "black" },
 					yaml = { "yamlfmt" },
-					go = { "gofumpt" }
+					go = { "gofumpt" },
+					csharp = {"charpier"}
 				},
 			})
 
