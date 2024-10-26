@@ -19,6 +19,11 @@ return {
 							case_mode = "smart_case",
 						},
 					},
+					mappings = {
+						n = {
+							["d"] = require("telescope.actions").delete_buffer,
+						},
+					},
 				},
 			})
 			require("telescope").load_extension("fzf")
@@ -28,11 +33,6 @@ return {
 				"<F2>",
 				"<cmd>Telescope find_files<cr>",
 				desc = "Open telescope file finder",
-			},
-			{
-				"<F3>",
-				"<cmd>Telescope live_grep<cr>",
-				desc = "Open telescope live grep",
 			},
 		},
 	},

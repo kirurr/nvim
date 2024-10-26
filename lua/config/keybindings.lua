@@ -15,7 +15,7 @@ end
 map("n", "[b", ":bp<CR>", assign_opts("Previous buffer", nil))
 map("n", "]b", ":bn<CR>", assign_opts("Next buffer", nil))
 
-map("n", "<leader>bo", ":Telescope buffers<CR>", assign_opts("Open telescope buffers", nil))
+map("n", "<leader>bb", ":Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal<CR>", assign_opts("Open telescope buffers", nil))
 map("n", "<leader>bd", ":bd<CR>", assign_opts("Delete current buffer", nil))
 map("n", "<leader>bp", ":bp<CR>", assign_opts("Previous buffer", nil))
 map("n", "<leader>bn", ":bn<CR>", assign_opts("Next buffer", nil))
